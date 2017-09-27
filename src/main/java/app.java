@@ -1,20 +1,25 @@
+import constant.libraryClasses.Customer;
 import constant.libraryClasses.SiteEnum;
 import controller.ControlRouter;
 
 import java.util.Scanner;
 
 public class app {
-    public static void main(String[] arg) {
+    public static  void main(String[] arg) {
         System.out.println("app begin!");
         boolean canBreakOutLoop = false;
+        SiteEnum action = SiteEnum.HOME;
+
         Scanner in = new Scanner(System.in);
-        SiteEnum action = SiteEnum.LOGIN;
-        ControlRouter controlRouter = new ControlRouter();
+        System.out.println("enter your name first!");
+        Customer customer = new Customer(in.next());
+
+        ControlRouter controlRouter = new ControlRouter(customer);
         do {
             System.out.println("input you command: ");
-            action = controlRouter.switchSite(in.next());
+            action = controlRouter.switchSite(in.next(), action);
             switch (action) {
-                case LOGIN:
+                case HOME:
                     System.out.println("login");
                     break;
                 case VIEW_LIST:
@@ -25,7 +30,6 @@ public class app {
                     break;
                 case LOGOUT:
                     System.out.println("logout");
-                    canBreakOutLoop = true;
                     break;
                 case QUIT:
                     System.out.println("quit now! ");
@@ -37,6 +41,6 @@ public class app {
                 default:
                     System.out.println("Welcome");
             }
-        } while(!canBreakOutLoop);
+        } while (!canBreakOutLoop);
     }
 }
