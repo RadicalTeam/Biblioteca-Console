@@ -16,6 +16,9 @@ public class Printer {
             case HOME:
                 System.out.println("We are locate in Home page");
                 break;
+            case RETURN:
+                System.out.println("We are locating in RETURN PAGE");
+                break;
             case VIEW_LIST:
                 System.out.println("We are locate in view list");
                 break;

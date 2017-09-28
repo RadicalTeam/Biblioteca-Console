@@ -16,9 +16,12 @@ public class HomeService {
     }
 
     private SiteEnum switchSite(String action) {
-        if(Objects.equals(action, "view")) {
+        if(action.equalsIgnoreCase("view")) {
             printer.printGuideWord("we are jumping to view list");
             return SiteEnum.VIEW_LIST;
+        } else if(action.equalsIgnoreCase("return")) {
+            printer.printGuideWord("we are jumping to return page");
+            return SiteEnum.RETURN;
         }
         System.out.println("you have input a in legal command! you");
         return SiteEnum.HOME;
