@@ -37,9 +37,6 @@ public class ControlRouter {
             case LOGOUT:
                 System.out.println("logout");
                 break;
-            case QUIT:
-                System.out.println("quit now! ");
-                break;
             case ERROR:
                 System.out.println("wrong command");
                 break;

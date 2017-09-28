@@ -34,9 +34,7 @@ public class ControlRouterTest {
         return Arrays.asList(new Object[][]{
                 {"view", SiteEnum.HOME, SiteEnum.VIEW_LIST},
                 {"return", SiteEnum.HOME, SiteEnum.RETURN},
-//                {"return", SiteEnum.RETURN},
-//                {"quit", SiteEnum.HOME, SiteEnum.QUIT},
-//                {"logout", SiteEnum.HOME, SiteEnum.HOME},
+                {"quit", SiteEnum.HOME, SiteEnum.QUIT},
         });
     }
 
