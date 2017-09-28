@@ -17,10 +17,8 @@ public class HomeService {
 
     private SiteEnum switchSite(String action) {
         if (action.equalsIgnoreCase(ActionEnum.VIEW.name())) {
-            printer.printGuideWord("we are jumping to view list");
             return SiteEnum.VIEW_LIST;
         } else if (action.equalsIgnoreCase(ActionEnum.RETURN.name())) {
-            printer.printGuideWord("we are jumping to return page");
             return SiteEnum.RETURN;
         } else if (action.equalsIgnoreCase(ActionEnum.QUIT.name())) {
             printer.printGuideWord("quit now! ");

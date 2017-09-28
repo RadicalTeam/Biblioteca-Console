@@ -35,6 +35,8 @@ public class ControlRouterTest {
                 {"view", SiteEnum.HOME, SiteEnum.VIEW_LIST},
                 {"return", SiteEnum.HOME, SiteEnum.RETURN},
                 {"quit", SiteEnum.HOME, SiteEnum.QUIT},
+                {"quit", SiteEnum.VIEW_LIST, SiteEnum.QUIT},
+                {"XXXX", SiteEnum.VIEW_LIST, SiteEnum.VIEW_LIST}
         });
     }
 

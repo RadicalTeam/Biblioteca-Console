@@ -2,6 +2,7 @@ package controller;
 
 import constant.libraryClasses.Customer;
 import constant.libraryClasses.SiteEnum;
+import services.BookListService;
 import services.HomeService;
 
 import java.util.HashMap;
@@ -10,6 +11,8 @@ import java.util.Map;
 public class ControlRouter {
     public Customer customer;
     HomeService homeService = new HomeService();
+
+    BookListService bookListService = new BookListService();
 
     private Map<String, SiteEnum> siteMap = new HashMap<>();
 
@@ -29,6 +32,7 @@ public class ControlRouter {
                 nextSite = homeService.action(action);
                 break;
             case VIEW_LIST:
+                nextSite = bookListService.action(action);
                 System.out.println("view list");
                 break;
             case RENT:
