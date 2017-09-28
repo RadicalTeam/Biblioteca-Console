@@ -2,19 +2,18 @@ package controller;
 
 import constant.libraryClasses.Customer;
 import constant.libraryClasses.SiteEnum;
-import services.LibraryService;
+import services.HomeService;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ControlRouter {
     public Customer customer;
-    LibraryService libraryService = new LibraryService();
+    HomeService homeService = new HomeService();
 
     private Map<String, SiteEnum> siteMap = new HashMap<>();
 
-    public ControlRouter(Customer customer) {
-        this.customer = customer;
+    public ControlRouter() {
         siteMap.put("login", SiteEnum.HOME);
         siteMap.put("view", SiteEnum.VIEW_LIST);
         siteMap.put("rent", SiteEnum.RENT);
@@ -24,10 +23,29 @@ public class ControlRouter {
     }
 
     public SiteEnum switchSite(String action, SiteEnum site) {
-        return siteMap.getOrDefault(action, SiteEnum.ERROR);
-    }
-
-    private SiteEnum quitSite() {
-        return SiteEnum.QUIT;
+        SiteEnum nextSite = site;
+        switch (site) {
+            case HOME:
+                nextSite = homeService.action(action);
+                break;
+            case VIEW_LIST:
+                System.out.println("view list");
+                break;
+            case RENT:
+                System.out.println("checkout book");
+                break;
+            case LOGOUT:
+                System.out.println("logout");
+                break;
+            case QUIT:
+                System.out.println("quit now! ");
+                break;
+            case ERROR:
+                System.out.println("wrong command");
+                break;
+            default:
+                System.out.println("Welcome");
+        }
+        return nextSite;
     }
 }

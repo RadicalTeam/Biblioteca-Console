@@ -1,5 +1,6 @@
 package constant.libraryClasses;
 
+
 import java.util.List;
 
 public class Customer {
@@ -13,6 +14,9 @@ public class Customer {
         this.name = name;
     }
 
+    public String getName() {
+        return this.name;
+    }
     public void checkoutBook() {
         System.out.println("checkout book!");
     }

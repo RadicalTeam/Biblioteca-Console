@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class ControlRouterTest {
     private ControlRouter controlRouter;
     private String input;
+    private SiteEnum locateSite;
     private SiteEnum exceptEnum;
 
     @Before
@@ -22,26 +23,26 @@ public class ControlRouterTest {
         controlRouter = new ControlRouter();
     }
 
-    public ControlRouterTest(String input, SiteEnum exceptEnum) {
+    public ControlRouterTest(String input, SiteEnum locateSite, SiteEnum exceptEnum) {
         this.input = input;
+        this.locateSite = locateSite;
         this.exceptEnum = exceptEnum;
     }
 
     @Parameterized.Parameters
     public static Collection primeNumbers() {
         return Arrays.asList(new Object[][]{
-                {"login", SiteEnum.HOME},
-                {"view", SiteEnum.VIEW_LIST},
-                {"rent", SiteEnum.RENT},
-                {"return", SiteEnum.RETURN},
-                {"quit", SiteEnum.QUIT},
-                {"logout", SiteEnum.LOGOUT},
+                {"view", SiteEnum.HOME, SiteEnum.VIEW_LIST},
+//                {"return", SiteEnum.HOME, SiteEnum.RETURN},
+//                {"return", SiteEnum.RETURN},
+//                {"quit", SiteEnum.HOME, SiteEnum.QUIT},
+//                {"logout", SiteEnum.HOME, SiteEnum.HOME},
         });
     }
 
     @Test
     public void testControlRouter() throws Exception {
-        assertEquals(exceptEnum, controlRouter.switchSite(input));
+        assertEquals(exceptEnum, controlRouter.switchSite(input, locateSite));
     }
 
 }
