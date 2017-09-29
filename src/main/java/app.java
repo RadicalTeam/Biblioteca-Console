@@ -23,7 +23,7 @@ public class app {
                 printer.firstMessageWhenLocateNewPage(site);
             }
             previousSite = site;
-            site = controlRouter.switchSite(in.next(), site);
+            site = controlRouter.switchSite(in.nextLine(), site);
             canBreakOutLoop = site == SiteEnum.QUIT;
         } while (!canBreakOutLoop);
     }

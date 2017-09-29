@@ -19,7 +19,6 @@ public class ControlRouter {
                 break;
             case VIEW_LIST:
                 nextSite = bookListService.action(action);
-                System.out.println("view list");
                 break;
             case RENT:
                 System.out.println("checkout book");
