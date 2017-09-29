@@ -5,25 +5,11 @@ import constant.libraryClasses.SiteEnum;
 import services.BookListService;
 import services.HomeService;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ControlRouter {
     public Customer customer;
     HomeService homeService = new HomeService();
 
     BookListService bookListService = new BookListService();
-
-    private Map<String, SiteEnum> siteMap = new HashMap<>();
-
-    public ControlRouter() {
-        siteMap.put("login", SiteEnum.HOME);
-        siteMap.put("view", SiteEnum.VIEW_LIST);
-        siteMap.put("rent", SiteEnum.RENT);
-        siteMap.put("return", SiteEnum.RETURN);
-        siteMap.put("quit", SiteEnum.QUIT);
-        siteMap.put("logout", SiteEnum.LOGOUT);
-    }
 
     public SiteEnum switchSite(String action, SiteEnum site) {
         SiteEnum nextSite = site;
