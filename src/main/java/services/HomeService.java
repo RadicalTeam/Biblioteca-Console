@@ -4,6 +4,7 @@ import constant.libraryClasses.ActionEnum;
 import constant.libraryClasses.SiteEnum;
 import util.Printer;
 
+
 public class HomeService {
     private Printer printer = new Printer();
 
@@ -16,7 +17,7 @@ public class HomeService {
     }
 
     private SiteEnum switchSite(String action) {
-        if (action.equalsIgnoreCase(ActionEnum.VIEW.name())) {
+        if (action.equalsIgnoreCase(ActionEnum.LIST_BOOKS.name())) {
             return SiteEnum.VIEW_LIST;
         } else if (action.equalsIgnoreCase(ActionEnum.RETURN.name())) {
             return SiteEnum.RETURN;
@@ -24,7 +25,8 @@ public class HomeService {
             printer.printGuideWord("quit now! ");
             return SiteEnum.QUIT;
         }
-        System.out.println("you have input a in legal command! you");
+        System.out.println("Please select a valid option!");
         return SiteEnum.HOME;
     }
+
 }

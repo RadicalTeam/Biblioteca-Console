@@ -2,7 +2,7 @@ package constant.libraryClasses;
 
 public enum ActionEnum {
     LOGIN,
-    VIEW,
+    LIST_BOOKS,
     QUIT,
     BACK,
     CHECKOUT,

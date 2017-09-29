@@ -11,6 +11,7 @@ public class app {
         printer.printGuideWord("app begin!");
         boolean canBreakOutLoop;
         SiteEnum site = SiteEnum.HOME;
+        SiteEnum previousSite = null;
 
         Scanner in = new Scanner(System.in);
         printer.printGuideWord("enter your name first!");
@@ -18,7 +19,10 @@ public class app {
         printer.printWelcomeWord(customer.getName());
         ControlRouter controlRouter = new ControlRouter();
         do {
-            printer.announceLocationPage(site);
+            if(site != previousSite) {
+                printer.firstMessageWhenLocateNewPage(site);
+            }
+            previousSite = site;
             site = controlRouter.switchSite(in.next(), site);
             canBreakOutLoop = site == SiteEnum.QUIT;
         } while (!canBreakOutLoop);
