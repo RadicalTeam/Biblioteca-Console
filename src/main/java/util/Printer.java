@@ -20,7 +20,7 @@ public class Printer {
                 System.out.println("We are locate in Home page");
                 break;
             case RETURN:
-                System.out.println("We are locating in RETURN PAGE");
+                System.out.println("We are locating in RETURN PAGE\nPlease input the book name you want return");
                 break;
             case VIEW_LIST:
                 System.out.println("We are locate in view list");
@@ -43,7 +43,7 @@ public class Printer {
         }
     }
 
-    public List<String> getViewListFirstMessage() {
+    private List<String> getViewListFirstMessage() {
         List<String> booksList = new ArrayList<>();
         booksList.add("Start Java");
         booksList.add("Start PHP");
@@ -51,7 +51,7 @@ public class Printer {
         return booksList;
     }
 
-    public void printFirstMessageOfViewListPage(List<String> bookList) {
+    private void printFirstMessageOfViewListPage(List<String> bookList) {
         System.out.println("\nBOOK LIST IS FOLLOWED:\n");
         for (String book : bookList) {
             System.out.println("《"+ book +"》");

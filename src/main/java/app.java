@@ -26,5 +26,6 @@ public class app {
             site = controlRouter.switchSite(in.nextLine(), site);
             canBreakOutLoop = site == SiteEnum.QUIT;
         } while (!canBreakOutLoop);
+        printer.printGuideWord("quit now! \n Thanks using our library");
     }
 }

@@ -4,12 +4,15 @@ import constant.libraryClasses.Customer;
 import constant.libraryClasses.SiteEnum;
 import services.BookListService;
 import services.HomeService;
+import services.ReturnService;
 
 public class ControlRouter {
     public Customer customer;
-    HomeService homeService = new HomeService();
+    private HomeService homeService = new HomeService();
 
-    BookListService bookListService = new BookListService();
+    private BookListService bookListService = new BookListService();
+
+    private ReturnService returnService = new ReturnService();
 
     public SiteEnum switchSite(String action, SiteEnum site) {
         SiteEnum nextSite = site;
@@ -20,8 +23,8 @@ public class ControlRouter {
             case VIEW_LIST:
                 nextSite = bookListService.action(action);
                 break;
-            case RENT:
-                System.out.println("checkout book");
+            case RETURN:
+                nextSite = returnService.action(action);
                 break;
             case LOGOUT:
                 System.out.println("logout");
