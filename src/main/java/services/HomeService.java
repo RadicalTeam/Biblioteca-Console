@@ -24,8 +24,9 @@ public class HomeService {
         } else if (action.equalsIgnoreCase(ActionEnum.QUIT.name())) {
             printer.printGuideWord("quit now! ");
             return SiteEnum.QUIT;
+        } else {
+            System.out.println("Please select a valid option!");
         }
-        System.out.println("Please select a valid option!");
         return SiteEnum.HOME;
     }
 

@@ -3,10 +3,11 @@ import constant.libraryClasses.SiteEnum;
 import controller.ControlRouter;
 import util.Printer;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class app {
-    public static void main(String[] arg) {
+    public static void main(String[] arg) throws IOException {
         Printer printer = new Printer();
         printer.printGuideWord("app begin!");
         boolean canBreakOutLoop;
@@ -26,7 +27,7 @@ public class app {
             site = controlRouter.switchSite(in.nextLine(), site);
             canBreakOutLoop = site == SiteEnum.QUIT;
         } while (!canBreakOutLoop);
-        printer.printGuideWord("quit now! \n Thanks using our library");
+        printer.printGuideWord("quit now!\nThanks using our library");
 //        CSVReader csvReader = new CSVReader();
 //        List<Map<String, String>> list = new ArrayList<>();
 //        for(int i=0; i<9; i++) {

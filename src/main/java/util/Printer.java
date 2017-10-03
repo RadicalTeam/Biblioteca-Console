@@ -25,7 +25,7 @@ public class Printer {
                 break;
             case VIEW_LIST:
                 System.out.println("We are locate in view list");
-                printFirstMessageOfViewListPage(getViewListFirstMessage());
+                getViewListFirstMessage();
                 break;
             case RENT:
                 System.out.println("We are locate in checkout book");
@@ -44,12 +44,14 @@ public class Printer {
         }
     }
 
-    private List<String> getViewListFirstMessage() {
-        List<String> booksList = new ArrayList<>();
-        booksList.add("Start Java");
-        booksList.add("Start PHP");
-        booksList.add("Start Javascript");
-        return booksList;
+    private void getViewListFirstMessage() {
+        CSVReader csvReader = new CSVReader();
+        List<Map<String, String>> allBooksDetail = csvReader.findAllBooks();
+        for (Map<String, String> book : allBooksDetail) {
+            if(Integer.parseInt(book.get("remainQuantity")) > 0) {
+                System.out.println(book.get("bookName") + "\n");
+            }
+        }
     }
 
     private void printFirstMessageOfViewListPage(List<String> bookList) {

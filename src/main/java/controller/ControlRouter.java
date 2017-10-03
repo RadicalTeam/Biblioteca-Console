@@ -6,6 +6,8 @@ import services.BookListService;
 import services.HomeService;
 import services.ReturnService;
 
+import java.io.IOException;
+
 public class ControlRouter {
     public Customer customer;
     private HomeService homeService = new HomeService();
@@ -14,7 +16,7 @@ public class ControlRouter {
 
     private ReturnService returnService = new ReturnService();
 
-    public SiteEnum switchSite(String action, SiteEnum site) {
+    public SiteEnum switchSite(String action, SiteEnum site) throws IOException {
         SiteEnum nextSite = site;
         switch (site) {
             case HOME:
