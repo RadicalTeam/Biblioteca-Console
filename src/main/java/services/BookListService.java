@@ -10,6 +10,8 @@ import java.util.Objects;
 public class BookListService {
     private Printer printer = new Printer();
     private String bookName = null;
+    private CSVReader csvReader = new CSVReader();
+
     public SiteEnum action(String action) {
         if (action.equalsIgnoreCase("quit")) {
             return SiteEnum.QUIT;
@@ -25,10 +27,13 @@ public class BookListService {
         if (Objects.isNull(checkoutCommand)) {
             printer.printGuideWord("You haven't choose a book yet");
         } else {
-            if(bookName.equalsIgnoreCase("error book")) {
+            Map<String, String> bookDetail = csvReader.findBookDetailByBookName(bookName);
+            if (isCheckoutBookAvailable(bookDetail)) {
+                printer.printGuideWord("Checkout book 《" + bookName + "》 succeed\nThank you! Enjoy the book\n");
+            } else {
                 printer.printGuideWord("That book is not available");
             }
-            printer.printGuideWord("Checkout book 《"+ bookName +"》 succeed\nThank you! Enjoy the book\n");
+
         }
     }
 
@@ -36,10 +41,14 @@ public class BookListService {
         this.bookName = bookName;
         CSVReader csvReader = new CSVReader();
         Map<String, String> bookDetailOfSearch = csvReader.findBookDetailByBookName(bookName);
-        if(bookDetailOfSearch.isEmpty()) {
+        if (bookDetailOfSearch.isEmpty()) {
             printer.printGuideWord("Sorry! We have no such book!");
         } else {
             printer.printBookDetail(bookDetailOfSearch);
         }
+    }
+
+    private boolean isCheckoutBookAvailable(Map<String, String> bookDetail) {
+        return !bookDetail.isEmpty() || Integer.parseInt(bookDetail.get("remainQuantity")) > 0;
     }
 }

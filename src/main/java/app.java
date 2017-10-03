@@ -1,7 +1,6 @@
 import constant.libraryClasses.Customer;
 import constant.libraryClasses.SiteEnum;
 import controller.ControlRouter;
-import util.CSVReader;
 import util.Printer;
 
 import java.util.Scanner;
@@ -28,5 +27,19 @@ public class app {
             canBreakOutLoop = site == SiteEnum.QUIT;
         } while (!canBreakOutLoop);
         printer.printGuideWord("quit now! \n Thanks using our library");
+//        CSVReader csvReader = new CSVReader();
+//        List<Map<String, String>> list = new ArrayList<>();
+//        for(int i=0; i<9; i++) {
+//            String[] arr = new String[] {
+//                    "java","jack","2007","20","2"
+//            };
+//            list.add(csvReader.buildBookDetailMap(arr));
+//        }
+//        try {
+//            csvReader.writeNewCsvFile(list);
+
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }

@@ -1,16 +1,22 @@
 package util;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CSVReader {
-    private Map<String, String> bookDetail;
+    private String booksListFilePath;
 
-    public String getResourcePath() {
+    public CSVReader() {
+        this.booksListFilePath = getResourcePath();
+    }
+
+    @NotNull
+    private String getResourcePath() {
         File locateFile = new File(this.getClass().getResource("/").getPath());
         return locateFile.getParentFile().getPath() +
                 File.separator +
@@ -19,12 +25,37 @@ public class CSVReader {
                 "books-list.scv";
     }
 
-    public CSVReader() {
-        this.bookDetail = new HashMap<>();
+    public Map<String, String> buildBookDetailMap(String[] singleBookDetailArray) {
+        Map<String, String> bookDetail = new HashMap<>();
+        bookDetail.put("bookName", singleBookDetailArray[0]);
+        bookDetail.put("author", singleBookDetailArray[1]);
+        bookDetail.put("publishYear", singleBookDetailArray[2]);
+        bookDetail.put("totalQuantity", singleBookDetailArray[3]);
+        bookDetail.put("remainQuantity", singleBookDetailArray[4]);
+        return bookDetail;
     }
 
     public Map<String, String> findBookDetailByBookName(String bookName) {
-        String booksListFilePath = getResourcePath();
+        BufferedReader bufferReader;
+        String singleBookDetailLine;
+        String csvSplitBy = ",";
+        Map<String, String> selectBookDetail = new HashMap<>();
+        try {
+            bufferReader = new BufferedReader(new FileReader(booksListFilePath));
+            while ((singleBookDetailLine = bufferReader.readLine()) != null) {
+                String[] singleBookDetailArray = singleBookDetailLine.split(csvSplitBy);
+                if (singleBookDetailArray[0].equalsIgnoreCase(bookName)) {
+                    selectBookDetail = buildBookDetailMap(singleBookDetailArray);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return selectBookDetail;
+    }
+
+    public List<Map<String, String>> findAllBooks() {
+        List<Map<String, String>> bookList = new ArrayList<>();
         BufferedReader bufferReader;
         String singleBookDetailLine;
         String csvSplitBy = ",";
@@ -32,19 +63,48 @@ public class CSVReader {
             bufferReader = new BufferedReader(new FileReader(booksListFilePath));
             while ((singleBookDetailLine = bufferReader.readLine()) != null) {
                 String[] singleBookDetailArray = singleBookDetailLine.split(csvSplitBy);
-                if (singleBookDetailArray[0].equalsIgnoreCase(bookName)) {
-                    bookDetail.put("bookName", singleBookDetailArray[0]);
-                    bookDetail.put("author", singleBookDetailArray[1]);
-                    bookDetail.put("publishYear", singleBookDetailArray[2]);
-                    bookDetail.put("totalQuantity", singleBookDetailArray[3]);
-                    bookDetail.put("remainQuantity", singleBookDetailArray[4]);
-                    break;
-                }
+                bookList.add(buildBookDetailMap(singleBookDetailArray));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return bookDetail;
+        return bookList;
     }
 
+    public void checkoutBook(String bookName) throws IOException {
+        List<Map<String, String>> bookList = findAllBooks();
+        for (Map<String, String> book : bookList) {
+            if (book.get("bookName").equalsIgnoreCase(bookName)) {
+                Integer remainQuantity = Integer.parseInt(book.get("remainQuantity")) - 1;
+                book.replace("remainQuantity", remainQuantity.toString());
+            }
+        }
+        writeNewCsvFile(bookList);
+    }
+
+    public void returnBook(String bookName) throws IOException {
+        List<Map<String, String>> bookList = findAllBooks();
+        for (Map<String, String> book : bookList) {
+            if (book.get("bookName").equalsIgnoreCase(bookName)) {
+                Integer remainQuantity = Integer.parseInt(book.get("remainQuantity")) + 1;
+                book.replace("remainQuantity", remainQuantity.toString());
+            }
+        }
+        writeNewCsvFile(bookList);
+    }
+
+    private void writeNewCsvFile(List<Map<String, String>> bookList) throws IOException {
+        FileWriter writeIntoFile = new FileWriter(getResourcePath());
+        BufferedWriter bufferedWriter = new BufferedWriter(writeIntoFile);
+        for (Map<String, String> book : bookList) {
+            String line = "";
+            line += book.get("bookName") + ","
+                    + book.get("author") + ","
+                    + book.get("publishYear") + ","
+                    + book.get("totalQuantity") + ","
+                    + book.get("remainQuantity") + "\n";
+            bufferedWriter.write(line);
+        }
+        bufferedWriter.close();
+    }
 }
