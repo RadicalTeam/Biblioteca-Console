@@ -1,6 +1,7 @@
 package util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -9,13 +10,21 @@ import java.util.Map;
 public class CSVReader {
     private Map<String, String> bookDetail;
 
+    public String getResourcePath() {
+        File locateFile = new File(this.getClass().getResource("/").getPath());
+        return locateFile.getParentFile().getPath() +
+                File.separator +
+                "resources" +
+                File.separator +
+                "books-list.scv";
+    }
+
     public CSVReader() {
         this.bookDetail = new HashMap<>();
     }
 
     public Map<String, String> findBookDetailByBookName(String bookName) {
-        PathReader pathReader = new PathReader();
-        String booksListFilePath = pathReader.getResourcePath();
+        String booksListFilePath = getResourcePath();
         BufferedReader bufferReader;
         String singleBookDetailLine;
         String csvSplitBy = ",";
