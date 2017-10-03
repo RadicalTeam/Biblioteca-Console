@@ -1,12 +1,8 @@
 package constant.libraryClasses;
 
 public enum SiteEnum {
-    LOGIN,
     HOME,
-    VIEW_LIST,
-    RENT,
+    LIST_BOOKS,
     RETURN,
-    LOGOUT,
     QUIT,
-    ERROR,
 }

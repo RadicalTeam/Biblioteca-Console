@@ -2,7 +2,6 @@ package util;
 
 import constant.libraryClasses.SiteEnum;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,21 +22,12 @@ public class Printer {
             case RETURN:
                 System.out.println("We are locating in RETURN PAGE\nPlease input the book name you want return");
                 break;
-            case VIEW_LIST:
+            case LIST_BOOKS:
                 System.out.println("We are locate in view list");
                 getViewListFirstMessage();
                 break;
-            case RENT:
-                System.out.println("We are locate in checkout book");
-                break;
-            case LOGOUT:
-                System.out.println("We are locate in logout");
-                break;
             case QUIT:
                 System.out.println("We are locate in quit now! ");
-                break;
-            case ERROR:
-                System.out.println("wrong command");
                 break;
             default:
                 System.out.println("Welcome");

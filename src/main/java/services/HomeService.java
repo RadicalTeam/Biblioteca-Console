@@ -18,12 +18,7 @@ public class HomeService {
 
     private SiteEnum switchSite(String action) {
         if (action.equalsIgnoreCase(ActionEnum.LIST_BOOKS.name())) {
-            return SiteEnum.VIEW_LIST;
-        } else if (action.equalsIgnoreCase(ActionEnum.RETURN.name())) {
-            return SiteEnum.RETURN;
-        } else if (action.equalsIgnoreCase(ActionEnum.QUIT.name())) {
-            printer.printGuideWord("quit now! ");
-            return SiteEnum.QUIT;
+            return SiteEnum.LIST_BOOKS;
         } else {
             System.out.println("Please select a valid option!");
         }

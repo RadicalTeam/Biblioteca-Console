@@ -32,11 +32,11 @@ public class ControlRouterTest {
     @Parameterized.Parameters
     public static Collection primeNumbers() {
         return Arrays.asList(new Object[][]{
-                {"list_books", SiteEnum.HOME, SiteEnum.VIEW_LIST},
+                {"list_books", SiteEnum.HOME, SiteEnum.LIST_BOOKS},
                 {"return", SiteEnum.HOME, SiteEnum.RETURN},
                 {"quit", SiteEnum.HOME, SiteEnum.QUIT},
-                {"quit", SiteEnum.VIEW_LIST, SiteEnum.QUIT},
-                {"XXXX", SiteEnum.VIEW_LIST, SiteEnum.VIEW_LIST}
+                {"quit", SiteEnum.LIST_BOOKS, SiteEnum.QUIT},
+                {"XXXX", SiteEnum.LIST_BOOKS, SiteEnum.LIST_BOOKS}
         });
     }
 

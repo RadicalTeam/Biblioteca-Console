@@ -13,14 +13,12 @@ public class BookListService {
     private CSVReader csvReader = new CSVReader();
 
     public SiteEnum action(String action) {
-        if (action.equalsIgnoreCase("quit")) {
-            return SiteEnum.QUIT;
-        } else if (action.equalsIgnoreCase("checkout")) {
+        if (action.equalsIgnoreCase("checkout")) {
             checkoutSelectBook(action);
         } else {
             listSpecifyBookDetail(action);
         }
-        return SiteEnum.VIEW_LIST;
+        return SiteEnum.LIST_BOOKS;
     }
 
     private void checkoutSelectBook(String checkoutCommand) {

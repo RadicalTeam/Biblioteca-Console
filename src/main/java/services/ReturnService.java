@@ -13,11 +13,7 @@ public class ReturnService {
     private CSVReader csvReader;
 
     public SiteEnum action(String action) throws IOException {
-        if (action.equalsIgnoreCase("quit")) {
-            return SiteEnum.QUIT;
-        } else {
-            returnBook(action);
-        }
+        returnBook(action);
         return SiteEnum.RETURN;
     }
 
