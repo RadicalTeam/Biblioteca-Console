@@ -1,8 +1,10 @@
 package services;
 
 import constant.libraryClasses.SiteEnum;
+import util.CSVReader;
 import util.Printer;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class BookListService {
@@ -32,6 +34,12 @@ public class BookListService {
 
     private void listSpecifyBookDetail(String bookName) {
         this.bookName = bookName;
-        printer.printGuideWord("\nBOOK DETAIL:\nMy University  author: GaoErJi  publish year: 2010");
+        CSVReader csvReader = new CSVReader();
+        Map<String, String> bookDetailOfSearch = csvReader.findBookDetailByBookName(bookName);
+        if(bookDetailOfSearch.isEmpty()) {
+            printer.printGuideWord("Sorry! We have no such book!");
+        } else {
+            printer.printBookDetail(bookDetailOfSearch);
+        }
     }
 }

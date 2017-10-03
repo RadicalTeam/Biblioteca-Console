@@ -9,11 +9,8 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 public class CSVReaderTest {
-    private CSVReader csvReader;
-    @Before
-    public void setUp() {
-        csvReader = new CSVReader();
-    }
+    private CSVReader csvReader = new CSVReader();
+
     @Test
     public void should_return_book_detail_when_given_a_valid_book_name() throws Exception {
         Map<String, String> exceptBookDetail = new HashMap<>();

@@ -28,7 +28,5 @@ public class app {
             canBreakOutLoop = site == SiteEnum.QUIT;
         } while (!canBreakOutLoop);
         printer.printGuideWord("quit now! \n Thanks using our library");
-        CSVReader csvReader = new CSVReader();
-        System.out.println(csvReader.findBookDetailByBookName("java start"));
     }
 }

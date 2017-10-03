@@ -4,6 +4,7 @@ import constant.libraryClasses.SiteEnum;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Printer {
     public void printWelcomeWord(String customerName) {
@@ -56,5 +57,13 @@ public class Printer {
         for (String book : bookList) {
             System.out.println("《"+ book +"》");
         }
+    }
+
+    public void printBookDetail(Map<String, String> specifyBookDetail) {
+        String printString = "Follow is the selected book detail";
+        printString += "\nbookName: " + specifyBookDetail.get("bookName");
+        printString += "\nauthor: " + specifyBookDetail.get("author");
+        printString += "\npublishYear: " + specifyBookDetail.get("publishYear");
+        System.out.println(printString);
     }
 }
